@@ -9,10 +9,10 @@
   },
   "dependencies": {
     "axios": "^1.6.8",
-    "chart.js": "^3.9.1",
+    "chart.js": "^4.4.2",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
-    "vue-chartjs": "^4.1.2"
+    "vue-chart-3": "^3.1.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
