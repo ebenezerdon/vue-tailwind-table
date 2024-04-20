@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
 import { mount, flushPromises } from '@vue/test-utils'
 import DataDisplay from '@/components/DataDisplay'
 import fetchData from '@/services/DataService'
 
-// Properly mock the fetchData function
+// Mock the fetchData function
 jest.mock('@/services/DataService', () => ({
   __esModule: true, // tells Jest to treat the mock as a module.
   default: jest.fn(), // Mock the default export as a function.
@@ -64,5 +65,26 @@ describe('DataDisplay.vue', () => {
 
     expect(fetchData).toHaveBeenCalled()
     expect(wrapper.text()).toContain(`Error: ${errorMessage}`)
+  })
+
+  it('renders tabs and responds to tab clicks', async () => {
+    fetchData.mockResolvedValue([]) // Mock an empty data array
+    const wrapper = mount(DataDisplay)
+    await flushPromises()
+
+    // Check if all tabs are present
+    const tabs = wrapper.findAll('button')
+    expect(tabs.length).toBe(3)
+    expect(tabs[0].text()).toContain('Countries')
+    expect(tabs[1].text()).toContain('Products')
+    expect(tabs[2].text()).toContain('Graph')
+
+    // Simulate clicking on the 'Products' tab
+    await tabs[1].trigger('click')
+    expect(wrapper.vm.activeTab).toBe('products')
+
+    // Check if 'Products' tab is now active
+    expect(tabs[1].classes()).toContain('border-b-2')
+    expect(tabs[1].classes()).toContain('border-blue-500')
   })
 })
