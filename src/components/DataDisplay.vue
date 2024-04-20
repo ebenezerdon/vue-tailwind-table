@@ -1,6 +1,10 @@
 <template>
   <div class="p-6 h-screen">
     <div v-if="error" class="text-red-500">Error: {{ error }}</div>
+
+    <!-- Show loading text -->
+    <div v-if="!data" class="mt-4">Loading data...</div>
+
     <div v-if="data">
       <!-- Tab Headers -->
       <div class="flex border-b">
