@@ -1,5 +1,5 @@
 <template>
-  <div class="p-6">
+  <div class="p-6 h-screen">
     <div v-if="error" class="text-red-500">Error: {{ error }}</div>
     <div v-if="data">
       <!-- Tab Headers -->
